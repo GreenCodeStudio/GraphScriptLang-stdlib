@@ -1,17 +1,40 @@
 import {GSLClass} from "GraphScriptLang-core/GSLClass";
 import {NativeFunction} from "GraphScriptLang-core/NativeFunction";
 
-export const GSLMath = new GSLClass();
-GSLMath.functions.push(new NativeFunction('GSL/Math', 'add', function (a, b) {
-    return {result: (+a.value) + (+b.value)}
-}, {a: {type: 'number'}, b: {type: 'number'}}, {result: {type: 'number'}}))
+export const GSLMath = new GSLClass('GSL/Math');
+GSLMath.addFunction('add', function ({a, b}) {
+    return {result: a + b}
+}, {
+    pure: true,
+    static: true,
+    inputs: {a: {type: 'number', name: 'a'}, b: {type: 'number', name: 'b'}},
+    outputs: {result: {type: 'number', name: 'result'}}
+});
 
-GSLMath.functions.push(new NativeFunction('GSL/Math', 'subtract', function (a, b) {
-    return {result: (+a.value) - (+b.value)}
-}, {a: {type: 'number'}, b: {type: 'number'}}, {result: {type: 'number'}}))
-GSLMath.functions.push(new NativeFunction('GSL/Math', 'multiply', function (a, b) {
-    return {result: (+a.value) * (+b.value)}
-}, {a: {type: 'number'}, b: {type: 'number'}}, {result: {type: 'number'}}))
-GSLMath.functions.push(new NativeFunction('GSL/Math', 'divide', function (a, b) {
-    return {result: (+a.value) / (+b.value)}
-}, {a: {type: 'number'}, b: {type: 'number'}}, {result: {type: 'number'}}))
+GSLMath.addFunction('subtract', function ({a, b}) {
+    return {result: a - b}
+}, {
+    pure: true,
+    static: true,
+    inputs: {a: {type: 'number', name: 'a'}, b: {type: 'number', name: 'b'}},
+    outputs: {result: {type: 'number', name: 'result'}}
+});
+
+GSLMath.addFunction('multiply', function ({a, b}) {
+    return {result: a * b}
+}, {
+    pure: true,
+    static: true,
+    inputs: {a: {type: 'number', name: 'a'}, b: {type: 'number', name: 'b'}},
+    outputs: {result: {type: 'number', name: 'result'}}
+});
+
+GSLMath.addFunction('divide', function ({a, b}) {
+    return {result: a / b}
+}, {
+    pure: true,
+    static: true,
+    inputs: {a: {type: 'number', name: 'a'}, b: {type: 'number', name: 'b'}},
+    outputs: {result: {type: 'number', name: 'result'}}
+});
+
